@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delagil: Impulsione o seu Negócio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-primary': '#0D47A1', // Deep Blue
+            'brand-primary-dark': '#002171',
+            'brand-primary-light': '#5472d3',
+            'brand-secondary': '#424242', // Dark Gray for text
+            'brand-accent': '#4CAF50', // Green
+            'brand-accent-hover': '#388E3C',
+            'brand-accent-alt': '#FF9800', // Orange
+            'brand-accent-alt-hover': '#F57C00',
+            'brand-background': '#FFFFFF', // White background
+            'brand-surface': '#F5F5F5', // Light Gray for cards/sections
+            'brand-text-primary': '#212121', // Primary text on light backgrounds
+            'brand-text-secondary': '#757575', // Secondary text
+            'brand-text-on-primary': '#FFFFFF', // Text on primary color
+            'brand-border': '#E0E0E0', // Borders
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.6.2",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.516.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="font-sans">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
