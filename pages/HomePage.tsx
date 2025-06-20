@@ -5,8 +5,8 @@ import Card from '../components/ui/Card';
 import ContactForm from '../components/forms/ContactForm';
 import SEOHead from '../components/seo/SEOHead';
 import { SITE_SLOGAN } from '../constants';
-import { Service, Testimonial, PortfolioItem } from '../types';
-import { getServices, getTestimonials, getPortfolioItems } from '../services/supabaseService';
+import { Service, Testimonial } from '../types';
+import { getServices, getTestimonials } from '../services/supabaseService';
 import * as LucideIcons from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CaseStudy } from '../../types';
-import { getCaseStudyBySlug } from '../../services/supabaseService';
-import SEOHead from '../../components/seo/SEOHead';
-import NotFoundPage from '../NotFoundPage';
-import { CheckCircle, Briefcase, Zap, BarChart2, MessageSquare, ArrowLeft } from 'lucide-react';
+import { CaseStudy } from '../types';
+import { getCaseStudyBySlug } from '../services/supabaseService';
+import SEOHead from '../components/seo/SEOHead';
+import NotFoundPage from './NotFoundPage';
+import { Briefcase, Zap, BarChart2, MessageSquare, ArrowLeft } from 'lucide-react';
 
 const CaseStudyDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -92,10 +92,10 @@ const CaseStudyDetailPage: React.FC = () => {
                 <BarChart2 className="mr-3 text-brand-accent" /> Resultados
               </h2>
               <ul className="space-y-4">
-                {caseStudy.resultsAchieved.map((result, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="text-green-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-lg text-brand-text-secondary">{result}</span>
+                {caseStudy.resultsAchieved.map((result: string, index: number) => (
+                  <li key={index} className="mb-2 flex items-center gap-2">
+                    <span className="inline-block w-2 h-2 bg-brand-accent rounded-full"></span>
+                    {result}
                   </li>
                 ))}
               </ul>
@@ -112,8 +112,8 @@ const CaseStudyDetailPage: React.FC = () => {
             <section>
               <h3 className="text-2xl font-bold text-brand-primary mb-4">Tecnologias Utilizadas</h3>
               <div className="flex flex-wrap gap-2">
-                {caseStudy.technologiesUsed.map(tech => (
-                  <span key={tech} className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                {caseStudy.technologiesUsed.map((tech: string, idx: number) => (
+                  <span key={idx} className="inline-block bg-brand-surface text-brand-accent px-3 py-1 rounded-full text-xs font-semibold mr-2 mb-2">
                     {tech}
                   </span>
                 ))}

@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Resultados e relatórios de testes
+test-results/
+playwright-report/
+coverage/
+*.lcov
+
+# Arquivos temporários de testes
+*.tmp
+*.temp

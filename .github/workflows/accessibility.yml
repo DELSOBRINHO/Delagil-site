@@ -30,8 +30,8 @@ jobs:
       - name: Build application
         run: npm run build
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_URL: ${{ github.ref == 'refs/heads/main' && secrets.VITE_SUPABASE_URL_PROD || secrets.VITE_SUPABASE_URL_DEV }}
+          VITE_SUPABASE_ANON_KEY: ${{ github.ref == 'refs/heads/main' && secrets.VITE_SUPABASE_ANON_KEY_PROD || secrets.VITE_SUPABASE_ANON_KEY_DEV }}
 
       - name: Run accessibility tests with Playwright
         run: |
@@ -58,6 +58,4 @@ jobs:
           configPath: './lighthouserc.js'
           uploadArtifacts: true
           temporaryPublicStorage: true
-          runs: 1
-          settings: |
-            onlyCategories: accessibility 
+          runs: 1 

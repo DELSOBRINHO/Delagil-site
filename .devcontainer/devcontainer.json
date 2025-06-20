@@ -1,0 +1,25 @@
+{
+  "name": "Delagil Site DevContainer",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "forwardPorts": [4173, 54321, 54322],
+  "postCreateCommand": ".devcontainer/postCreateCommand.sh",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "editor.formatOnSave": true
+  },
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-playwright.playwright",
+    "bradlc.vscode-tailwindcss",
+    "ms-azuretools.vscode-docker",
+    "github.vscode-github-actions"
+  ],
+  "remoteEnv": {
+    "SUPABASE_URL": "${localEnv:SUPABASE_URL}",
+    "SUPABASE_ANON_KEY": "${localEnv:SUPABASE_ANON_KEY}"
+  }
+} 

@@ -109,7 +109,8 @@ test.describe('Case Studies Pages', () => {
     await page.goto('/cases-de-sucesso');
     
     // Select "Marketing Digital" category
-    const categorySelect = page.locator('select');
+    await page.waitForSelector('[data-testid="case-category-select"]');
+    const categorySelect = page.locator('[data-testid="case-category-select"]');
     await categorySelect.selectOption('Marketing Digital');
     
     // Should show only marketing digital cases
@@ -124,7 +125,8 @@ test.describe('Case Studies Pages', () => {
     await page.goto('/cases-de-sucesso');
     
     // Search for "FashionNow"
-    const searchInput = page.locator('input[type="text"]');
+    await page.waitForSelector('[data-testid="case-search-input"]');
+    const searchInput = page.locator('[data-testid="case-search-input"]');
     await searchInput.fill('FashionNow');
     
     // Should show only cases containing "FashionNow"
@@ -139,7 +141,8 @@ test.describe('Case Studies Pages', () => {
     await page.goto('/cases-de-sucesso');
     
     // Apply a filter
-    const categorySelect = page.locator('select');
+    await page.waitForSelector('[data-testid="case-category-select"]');
+    const categorySelect = page.locator('[data-testid="case-category-select"]');
     await categorySelect.selectOption('Marketing Digital');
     
     // Should show filtered results
@@ -159,7 +162,8 @@ test.describe('Case Studies Pages', () => {
     await page.goto('/cases-de-sucesso');
     
     // Search for something that doesn't exist
-    const searchInput = page.locator('input[type="text"]');
+    await page.waitForSelector('[data-testid="case-search-input"]');
+    const searchInput = page.locator('[data-testid="case-search-input"]');
     await searchInput.fill('xyz123nonexistent');
     
     // Should show no results message
@@ -171,14 +175,16 @@ test.describe('Case Studies Pages', () => {
     await page.goto('/cases-de-sucesso');
     
     // Apply a filter
-    const categorySelect = page.locator('select');
+    await page.waitForSelector('[data-testid="case-category-select"]');
+    const categorySelect = page.locator('[data-testid="case-category-select"]');
     await categorySelect.selectOption('Marketing Digital');
     
     // Should show active filter tag
     await expect(page.locator('text=Categoria: Marketing Digital')).toBeVisible();
     
     // Apply search
-    const searchInput = page.locator('input[type="text"]');
+    await page.waitForSelector('[data-testid="case-search-input"]');
+    const searchInput = page.locator('[data-testid="case-search-input"]');
     await searchInput.fill('test');
     
     // Should show both filter tags
@@ -190,10 +196,12 @@ test.describe('Case Studies Pages', () => {
     await page.goto('/cases-de-sucesso');
     
     // Apply multiple filters
-    const categorySelect = page.locator('select');
+    await page.waitForSelector('[data-testid="case-category-select"]');
+    const categorySelect = page.locator('[data-testid="case-category-select"]');
     await categorySelect.selectOption('Marketing Digital');
     
-    const searchInput = page.locator('input[type="text"]');
+    await page.waitForSelector('[data-testid="case-search-input"]');
+    const searchInput = page.locator('[data-testid="case-search-input"]');
     await searchInput.fill('test');
     
     // Remove search filter

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ServiceCategory } from '../types';
@@ -49,8 +48,8 @@ const ServicesLandingPage: React.FC = () => {
 
       {categories.length > 0 ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map(category => {
-            const IconComponent = LucideIcons[category.iconName] as LucideIcons.LucideIcon;
+          {categories.map((category: ServiceCategory) => {
+            const IconComponent = LucideIcons[category.iconName as keyof typeof LucideIcons] as LucideIcons.LucideIcon;
             return (
               <Link key={category.id} to={`/servicos/${category.slug}`} className="block group">
                 <Card className="p-8 h-full flex flex-col items-center text-center transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2">

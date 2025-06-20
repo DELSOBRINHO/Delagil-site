@@ -12,8 +12,8 @@
     "test:accessibility": "playwright test tests/accessibility.spec.js",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
-    "test:cases": "playwright test tests/casestudies.spec.js",
-    "test:cases:ui": "playwright test tests/casestudies.spec.js --ui",
+    "test:cases": "playwright test tests/casestudies.spec.cjs",
+    "test:cases:ui": "playwright test tests/casestudies.spec.cjs --ui",
     "lighthouse": "lhci autorun",
     "lighthouse:collect": "lhci collect",
     "lighthouse:assert": "lhci assert",
@@ -29,13 +29,15 @@
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.2.0",
-    "@playwright/test": "^1.40.0",
     "@axe-core/playwright": "^4.8.0",
+    "@lhci/cli": "^0.12.0",
+    "@playwright/test": "^1.53.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "axe-core": "^4.8.0",
     "lighthouse": "^11.6.0",
-    "@lhci/cli": "^0.12.0"
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
   }
 }
