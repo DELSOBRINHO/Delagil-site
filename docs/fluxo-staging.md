@@ -35,4 +35,19 @@ git merge develop
 # Após testes, merge para main
 git checkout main
 git merge stg
-``` 
+```
+
+## Checklist de Boas Práticas para Gerenciamento de Branches
+
+- [ ] Sempre crie branches de feature a partir da branch `develop`.
+- [ ] Nomeie as branches de feature de forma descritiva, ex: `feature/nome-da-feature`.
+- [ ] Faça commits pequenos e frequentes, com mensagens claras.
+- [ ] Antes de abrir um Pull Request, atualize sua branch com a última versão da `develop`.
+- [ ] Solicite revisão de código (code review) antes de fazer merge na `develop` ou `main`.
+- [ ] Após o merge da feature, delete a branch localmente e no remoto:
+  - Local: `git branch -d nome-da-branch`
+  - Remoto: `git push origin --delete nome-da-branch`
+- [ ] Nunca trabalhe diretamente nas branches `main`, `develop` ou `stg`.
+- [ ] Use Pull Requests para todo o fluxo de integração.
+- [ ] Resolva conflitos de merge antes de solicitar revisão.
+- [ ] Mantenha o repositório limpo, removendo branches antigas e não utilizadas.
