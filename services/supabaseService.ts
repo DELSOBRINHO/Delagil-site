@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { Service, ServiceCategory, PortfolioItem, Testimonial, ContactFormData } from '../types';
+import { Service, ServiceCategory, PortfolioItem, Testimonial, ContactFormData, CaseStudy } from '../types';
 
 // Initialize Supabase client
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -176,4 +176,62 @@ export const submitContactForm = async (data: ContactFormData): Promise<{ succes
       error: error instanceof Error ? error.message : 'Erro ao enviar formulário. Tente novamente.' 
     };
   }
+};
+
+// Mock Case Studies Data
+const caseStudiesData: CaseStudy[] = [
+  {
+    id: 'cs1',
+    slug: 'aumento-de-conversoes-para-e-commerce-de-moda',
+    title: 'Aumento de 400% nas Conversões para E-commerce de Moda',
+    clientName: 'FashionNow',
+    problemStatement: 'O cliente enfrentava baixas taxas de conversão e um alto custo de aquisição de clientes (CAC) através de suas campanhas de marketing digital, que não estavam gerando o ROI esperado.',
+    solutionProvided: 'Realizamos uma auditoria completa de SEO, reestruturamos as campanhas de Google Ads e Facebook Ads com foco em públicos de alta intenção, e implementamos uma estratégia de marketing de conteúdo para nutrir leads. Além disso, otimizamos a UX da página de checkout.',
+    resultsAchieved: [
+      'Aumento de 400% na taxa de conversão em 6 meses.',
+      'Redução de 60% no Custo por Aquisição (CAC).',
+      'Crescimento de 150% no tráfego orgânico qualificado.',
+      'Melhora de 35% na velocidade de carregamento do site.'
+    ],
+    technologiesUsed: ['Google Analytics', 'Google Ads', 'Facebook Ads', 'SEMrush', 'Hotjar'],
+    imageUrl: 'https://picsum.photos/seed/casestudy1/800/600',
+    category: 'Marketing Digital',
+    testimonial: {
+      quote: 'A parceria com a Delagil foi um divisor de águas. A expertise deles não apenas otimizou nossos investimentos, mas transformou nossa visão sobre o marketing digital.',
+      author: 'Juliana Almeida, CEO da FashionNow'
+    }
+  },
+  {
+    id: 'cs2',
+    slug: 'desenvolvimento-de-plataforma-saas-para-logistica',
+    title: 'Desenvolvimento e Lançamento de Plataforma SaaS para Logística',
+    clientName: 'LogisTech',
+    problemStatement: 'A LogisTech precisava desenvolver uma plataforma SaaS robusta e escalável para otimização de rotas, mas não possuía uma equipe de desenvolvimento interna com a expertise necessária em tecnologias de nuvem e arquitetura multi-tenant.',
+    solutionProvided: 'Assumimos o ciclo completo de desenvolvimento, desde a arquitetura da solução em AWS até a implementação do frontend em React e backend com Node.js e PostgreSQL. Utilizamos metodologias ágeis para garantir entregas contínuas e alinhamento com o cliente.',
+    resultsAchieved: [
+      'Lançamento da plataforma em 8 meses, dentro do prazo e orçamento.',
+      'Arquitetura escalável que suporta mais de 1000 clientes simultâneos.',
+      'Redução de 30% no tempo de processamento de rotas para os usuários finais.',
+      'Plataforma premiada como a inovação do ano no setor de logística.'
+    ],
+    technologiesUsed: ['React', 'Node.js', 'PostgreSQL', 'AWS (EC2, S3, RDS)', 'Docker', 'Jenkins'],
+    imageUrl: 'https://picsum.photos/seed/casestudy2/800/600',
+    category: 'Desenvolvimento de Software',
+  }
+];
+
+// Case Studies
+export const getCaseStudies = async (): Promise<CaseStudy[]> => {
+  // In a real scenario, you would fetch from Supabase
+  // const { data, error } = await supabase.from('case_studies').select('*');
+  // For now, return mock data
+  await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+  return caseStudiesData;
+};
+
+export const getCaseStudyBySlug = async (slug: string): Promise<CaseStudy | null> => {
+  // const { data, error } = await supabase.from('case_studies').select('*').eq('slug', slug).single();
+  await new Promise(resolve => setTimeout(resolve, 500));
+  const caseStudy = caseStudiesData.find(cs => cs.slug === slug);
+  return caseStudy || null;
 };

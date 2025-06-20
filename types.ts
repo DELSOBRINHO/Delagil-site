@@ -1,4 +1,3 @@
-
 import { LucideIcon } from 'lucide-react';
 
 export interface NavLinkItem {
@@ -46,6 +45,23 @@ export interface ContactFormData {
   company?: string;
   serviceInterest?: string[]; // Array of service IDs or names
   message: string;
+}
+
+export interface CaseStudy {
+  id: string;
+  slug: string;
+  title: string;
+  clientName: string;
+  problemStatement: string;
+  solutionProvided: string;
+  resultsAchieved: string[]; // Array of strings for bullet points
+  technologiesUsed: string[];
+  imageUrl: string;
+  category: string;
+  testimonial?: {
+    quote: string;
+    author: string;
+  };
 }
 
 // Represents the structure of grounding chunks from Google Search if it were used

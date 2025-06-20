@@ -1,4 +1,3 @@
-
 import { NavLinkItem } from './types';
 
 export const SITE_TITLE = "Delagil";
@@ -8,6 +7,7 @@ export const NAVIGATION_LINKS: NavLinkItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Sobre Nós', path: '/sobre' },
   { label: 'Serviços', path: '/servicos' },
+  { label: 'Cases de Sucesso', path: '/cases-de-sucesso' },
   { label: 'Portfólio', path: '/portfolio' },
   { label: 'Contato', path: '/contato' },
 ];
