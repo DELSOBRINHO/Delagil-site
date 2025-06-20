@@ -1,8 +1,7 @@
-
 import React, { useState, FormEvent } from 'react';
 import { ContactFormData, Service } from '../../types';
 import Button from '../ui/Button';
-import { supabase } from '../../services/supabaseService'; // Assuming supabase client is exported
+import { submitContactForm } from '../../services/supabaseService';
 
 interface ContactFormProps {
   availableServices?: Pick<Service, 'id' | 'title'>[];
@@ -46,22 +45,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ availableServices, onSubmitSu
     setSuccess(null);
 
     try {
-      // In a real app, you would use the Supabase client here
-      // For example: const { error: submissionError } = await supabase.from('contacts').insert([formData]);
-      console.log("Form data submitted:", formData);
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      const result = await submitContactForm(formData);
 
-      // Mocking Supabase submission
-      const submissionError = Math.random() > 0.9 ? { message: "Erro simulado ao enviar." } : null;
-
-
-      if (submissionError) {
-        throw new Error(submissionError.message);
+      if (result.success) {
+        setSuccess('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        setFormData({ name: '', email: '', phone: '', company: '', serviceInterest: [], message: '' });
+        if (onSubmitSuccess) onSubmitSuccess();
+      } else {
+        setError(result.error || 'Ocorreu um erro ao enviar sua mensagem. Tente novamente.');
       }
-
-      setSuccess('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-      setFormData({ name: '', email: '', phone: '', company: '', serviceInterest: [], message: '' });
-      if (onSubmitSuccess) onSubmitSuccess();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Ocorreu um erro ao enviar sua mensagem. Tente novamente.');
     } finally {
