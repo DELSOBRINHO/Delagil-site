@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getCaseStudies } from '../services/supabaseService';
 import { CaseStudy } from '../types';
 import CaseStudyCard from '../components/casestudies/CaseStudyCard';
-import SEOHead from '../components/SEOHead';
+import SEOHead from '../components/seo/SEOHead';
 import { Search, Filter, X } from 'lucide-react';
 
 const CaseStudiesPage: React.FC = () => {
@@ -77,7 +77,7 @@ const CaseStudiesPage: React.FC = () => {
         title="Cases de Sucesso - Delagil"
         description="Explore nossos cases de sucesso e veja como ajudamos empresas a alcançarem resultados extraordinários através de soluções digitais inovadoras."
         keywords="cases de sucesso, projetos, resultados, clientes, transformação digital"
-        ogImage="/og-cases.jpg"
+        image="/og-cases.jpg"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-brand-primary to-brand-secondary">
@@ -99,6 +99,7 @@ const CaseStudiesPage: React.FC = () => {
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                 <input
+                  data-testid="case-search-input"
                   type="text"
                   placeholder="Buscar por título, cliente ou categoria..."
                   value={searchTerm}
@@ -108,9 +109,10 @@ const CaseStudiesPage: React.FC = () => {
               </div>
 
               {/* Category Filter */}
-              <div className="relative">
+              <div className="relative hidden sm:block">
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                 <select
+                  data-testid="case-category-select"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   className="pl-10 pr-8 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent appearance-none cursor-pointer"
