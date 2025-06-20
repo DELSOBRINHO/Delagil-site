@@ -10,7 +10,7 @@ interface CaseStudyCardProps {
 
 const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy }) => {
   return (
-    <Link to={`/cases-de-sucesso/${caseStudy.slug}`} className="group block">
+    <Link to={`/cases-de-sucesso/${caseStudy.slug}`} className="group block" data-testid="case-study-card">
       <Card hoverEffect className="h-full flex flex-col">
         <div className="relative overflow-hidden rounded-t-lg h-48">
           <img 

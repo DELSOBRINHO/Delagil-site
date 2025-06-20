@@ -222,16 +222,81 @@ const caseStudiesData: CaseStudy[] = [
 
 // Case Studies
 export const getCaseStudies = async (): Promise<CaseStudy[]> => {
-  // In a real scenario, you would fetch from Supabase
-  // const { data, error } = await supabase.from('case_studies').select('*');
-  // For now, return mock data
-  await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
-  return caseStudiesData;
+  try {
+    const { data, error } = await supabase
+      .from('case_studies')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching case studies:', error);
+      throw error;
+    }
+
+    // Transform Supabase data to match our interface
+    const transformedData: CaseStudy[] = (data || []).map(item => ({
+      id: item.id,
+      slug: item.slug,
+      title: item.title,
+      clientName: item.client_name,
+      problemStatement: item.problem_statement,
+      solutionProvided: item.solution_provided,
+      resultsAchieved: item.results_achieved,
+      technologiesUsed: item.technologies_used,
+      imageUrl: item.image_url,
+      category: item.category,
+      testimonial: item.testimonial_quote && item.testimonial_author ? {
+        quote: item.testimonial_quote,
+        author: item.testimonial_author
+      } : undefined
+    }));
+
+    return transformedData;
+  } catch (error) {
+    console.error('Error in getCaseStudies:', error);
+    // Fallback to mock data
+    return caseStudiesData;
+  }
 };
 
 export const getCaseStudyBySlug = async (slug: string): Promise<CaseStudy | null> => {
-  // const { data, error } = await supabase.from('case_studies').select('*').eq('slug', slug).single();
-  await new Promise(resolve => setTimeout(resolve, 500));
-  const caseStudy = caseStudiesData.find(cs => cs.slug === slug);
-  return caseStudy || null;
+  try {
+    const { data, error } = await supabase
+      .from('case_studies')
+      .select('*')
+      .eq('slug', slug)
+      .single();
+
+    if (error) {
+      console.error('Error fetching case study by slug:', error);
+      throw error;
+    }
+
+    if (!data) return null;
+
+    // Transform Supabase data to match our interface
+    const transformedData: CaseStudy = {
+      id: data.id,
+      slug: data.slug,
+      title: data.title,
+      clientName: data.client_name,
+      problemStatement: data.problem_statement,
+      solutionProvided: data.solution_provided,
+      resultsAchieved: data.results_achieved,
+      technologiesUsed: data.technologies_used,
+      imageUrl: data.image_url,
+      category: data.category,
+      testimonial: data.testimonial_quote && data.testimonial_author ? {
+        quote: data.testimonial_quote,
+        author: data.testimonial_author
+      } : undefined
+    };
+
+    return transformedData;
+  } catch (error) {
+    console.error('Error in getCaseStudyBySlug:', error);
+    // Fallback to mock data
+    const caseStudy = caseStudiesData.find(cs => cs.slug === slug);
+    return caseStudy || null;
+  }
 };
